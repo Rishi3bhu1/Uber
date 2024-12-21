@@ -1,0 +1,42 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+logs/*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build and dependency directories
+dist/
+build/
+.out/
+.venv/
+target/
+coverage/
+tmp/
+temp/
+
+# System files
+*.bak
+*.tmp
+*.lock
+
+# Test files
+*.test.
