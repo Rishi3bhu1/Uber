@@ -18,6 +18,7 @@ const userSchema = new Schema({
         type:String,
         unique:true,
         required:true,
+        lowercase:true,
         minLength:[5,'Email must have 5 letters']
     },
     password:{

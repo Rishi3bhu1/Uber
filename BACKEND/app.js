@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const dbURL = process.env.dbURL;
 const PORT = process.env.PORT;
 const userRouter = require("./routes/user.route.js");
+const captainRouter = require("./routes/captain.route.js");
 const cookieParser = require("cookie-parser")
 main()
 .then((res)=>{
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 
 app.use("/users",userRouter)
+app.use("/captain",captainRouter)
 
 app.listen(PORT,()=>{
     console.log(`The server is listening at PORT ${PORT}`)
