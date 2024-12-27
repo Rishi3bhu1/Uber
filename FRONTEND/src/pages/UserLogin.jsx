@@ -1,18 +1,27 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { useState } from 'react'
+import axios from 'axios'
+import { Link,useNavigate} from 'react-router'
+import { useState,useContext} from 'react'
+import { UserDataContext } from '../context/UserContext'
 function UserLogin() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
-    const [userData,setUserData] = useState({})
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setUserData({
+    const [userData,setUserData] = useState({});
+    const {user,setUser} = useContext(UserDataContext);
+    const navigate = useNavigate();
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        const user = {
             email:email,
             password:password
         }
-        )
-        console.log(userData);
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`,user)
+        if(response.status===201){
+            const data = response.data;
+            setUser(data.userExist);
+            localStorage.setItem('token',data.token)
+            navigate('/user/home')
+        }
         setEmail('');
         setPassword('');
     }
@@ -41,12 +50,12 @@ function UserLogin() {
                     type="password" 
                     placeholder="password" 
                 />
-                <button type="submit" className='flex bg-black font-semibold text-white w-full justify-center py-2 rounded px-4 mb-3'>Continue</button>
+                <button type="submit" className='flex bg-black font-semibold text-white w-full justify-center py-2 rounded px-4 mb-3'>Login</button>
             </form>
-            <p className='text-center '>New here? <Link to='/usersignup' className='text-blue-600'>Create new account</Link></p>
+            <p className='text-center '>New here? <Link to='/user/signup' className='text-blue-600'>Create new account</Link></p>
         </div>
         <div>
-            <Link to='/captainlogin' className='flex bg-[#10b461] font-semibold text-white w-full justify-center py-2 rounded px-4 mb-7'>Sign in as Captain</Link>
+            <Link to='/captain/login' className='flex bg-[#10b461] font-semibold text-white w-full justify-center py-2 rounded px-4 mb-7'>Sign in as Captain</Link>
         </div>
     </div>
   )

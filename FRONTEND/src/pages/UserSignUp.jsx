@@ -1,22 +1,33 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router';
+
+import { useContext,useState } from 'react'
+import { Link,useNavigate} from 'react-router';
+import axios from 'axios';
+import {UserDataContext} from '../context/UserContext.jsx'
 function UserSignUp() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
+  const [ firstName, setFirstName ] = useState('')
+  const [ lastName, setLastName ] = useState('')
   const [userData,setUserData] = useState({})
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const {user,setUser} = useContext(UserDataContext);
+  const handleSubmit = async(e) => {
       e.preventDefault()
-      setUserData({
-        fullName:{
-          firstName:firstName,
-          lastName:lastName
+      const newUser = {
+        fullname:{
+          firstname:firstName,
+          lastname:lastName
         },
         email:email,
         password:password
       }
-      )
-      console.log(userData);
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`,newUser);
+      if(response.status===201){
+        const data = response.data;
+        setUser(data.user);
+        localStorage.setItem('token',data.token)
+        navigate('/user/home')
+      }
       setEmail('');
       setPassword('');
   }
@@ -28,19 +39,19 @@ function UserSignUp() {
               <h3 className='text-base font-semibold mb-2'>Enter Username</h3>
               <div className='flex gap-4'>
                 <input 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   required
                   className='bg-[#eeeeee]  rounded px-4 py-2 border  text-base placeholder:text-base w-1/2'
-                  type="email" 
+                  type="text" 
                   placeholder="FirstName" 
                 />
                 <input 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   required
                   className='bg-[#eeeeee]  rounded px-4 py-2 border  text-base placeholder:text-base w-1/2'
-                  type="email" 
+                  type="text" 
                   placeholder="LastName" 
                 />
               </div>
@@ -64,12 +75,12 @@ function UserSignUp() {
                     type="password" 
                     placeholder="password" 
                 />
-                <button type="submit" className='flex bg-black font-semibold text-white w-full justify-center py-2 rounded px-4 mb-3'>Continue</button>
+                <button type="submit" className='flex bg-black font-semibold text-white w-full justify-center py-2 rounded px-4 mb-3'>Create Account</button>
             </form>
-            <p className='text-center '>Not new? <Link to='/userlogin' className='text-blue-600'>Sign in</Link></p>
+            <p className='text-center '>Not new? <Link to='/user/login' className='text-blue-600'>Sign in</Link></p>
         </div>
         <div>
-            <Link to='/captainsignup' className='flex bg-[#10b461] font-semibold text-white w-full justify-center py-2 rounded px-4 mb-7'>Sign up as Captain</Link>
+            <Link to='/captain/signup' className='flex bg-[#10b461] font-semibold text-white w-full justify-center py-2 rounded px-4 mb-7'>Sign up as Captain</Link>
         </div>
     </div>
   )
