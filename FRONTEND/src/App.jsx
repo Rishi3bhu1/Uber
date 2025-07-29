@@ -1,6 +1,4 @@
 import { useContext, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import UserHome from './pages/UserHome.jsx'
 import Start from './pages/Start.jsx'
 import CaptainSignUp from './pages/CaptainSignUp.jsx'
@@ -14,6 +12,7 @@ import CaptainHome from './pages/CaptainHome.jsx'
 import CaptainProtectedWrapper from './pages/CaptainProtectedWrapper.jsx'
 import CaptainLogout from './pages/CaptainLogout.jsx'
 import Riding from './pages/Riding.jsx'
+import CaptainRiding from './pages/CaptainRiding.jsx'
 function App() {
   return (
     <Routes>
@@ -23,6 +22,7 @@ function App() {
           <CaptainHome/>
         </CaptainProtectedWrapper>
         } />
+      <Route path="/captain/riding" element={<CaptainRiding/>} />
       <Route path="/captain/signup" element={<CaptainSignUp/>} />
       <Route path="/captain/login" element={<CaptainLogin/>} />
       <Route path="/captain/logout" element={<CaptainLogout/>} />

@@ -17,8 +17,7 @@ function LookingForDriver(props) {
                         <i className="fa-solid fa-location-dot"></i>
                     </h1>
                     <div>
-                        <h3 className='text-lg font-medium'>562/11-A</h3>
-                        <p className='text-sm text-gray-600'>Kankariya Talab,Ahemdabad</p>
+                        <p className='text-sm text-gray-600'>{props.pickup}</p>
                     </div>
                 </div>
                 <div className='flex items-center gap-5 border-b-2 m-2'>
@@ -26,8 +25,7 @@ function LookingForDriver(props) {
                         <i className="fa-solid fa-location-dot"></i>
                     </h1>
                     <div>
-                        <h3 className='text-lg font-medium'>562/11-A</h3>
-                        <p className='text-sm text-gray-600'>Kankariya Talab,Ahemdabad</p>
+                        <p className='text-sm text-gray-600'>{props.destination}</p>
                     </div>
                 </div>
                 <div className='flex items-center gap-4 border-b-2 m-2'>
@@ -35,8 +33,7 @@ function LookingForDriver(props) {
                         <i className="fa-solid fa-money-bill"></i>
                     </h1>
                     <div>
-                        <h3 className='text-lg font-medium'>$193.20</h3>
-                        <p className='text-sm text-gray-600'>Cash Cash</p>
+                        <h3 className='text-lg font-medium'>₹{props.fare[props.vehicleType]}</h3>
                     </div>
                 </div>
             </div>

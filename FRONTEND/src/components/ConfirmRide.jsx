@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ConfirmRide({setConfirmRidePanel,closeConfirmRidePanelRef,setVehicleFound}) {
+function ConfirmRide({setConfirmRidePanel,pickup,destination,setVehicleFound,fare,vehicleType,createRide}) {
   return (
     <div >
         <div onClick={()=>setConfirmRidePanel(false)} className='flex justify-between'>
@@ -17,8 +17,7 @@ function ConfirmRide({setConfirmRidePanel,closeConfirmRidePanelRef,setVehicleFou
                         <i className="fa-solid fa-location-dot"></i>
                     </h1>
                     <div>
-                        <h3 className='text-lg font-medium'>562/11-A</h3>
-                        <p className='text-sm text-gray-600'>Kankariya Talab,Ahemdabad</p>
+                        <p className='text-sm text-gray-600'>{pickup}</p>
                     </div>
                 </div>
                 <div className='flex items-center gap-5 border-b-2 m-2'>
@@ -26,8 +25,7 @@ function ConfirmRide({setConfirmRidePanel,closeConfirmRidePanelRef,setVehicleFou
                         <i className="fa-solid fa-location-dot"></i>
                     </h1>
                     <div>
-                        <h3 className='text-lg font-medium'>562/11-A</h3>
-                        <p className='text-sm text-gray-600'>Kankariya Talab,Ahemdabad</p>
+                        <p className='text-sm text-gray-600'>{destination}</p>
                     </div>
                 </div>
                 <div className='flex items-center gap-4 border-b-2 m-2'>
@@ -35,14 +33,14 @@ function ConfirmRide({setConfirmRidePanel,closeConfirmRidePanelRef,setVehicleFou
                         <i className="fa-solid fa-money-bill"></i>
                     </h1>
                     <div>
-                        <h3 className='text-lg font-medium'>$193.20</h3>
-                        <p className='text-sm text-gray-600'>Cash Cash</p>
+                        <h3 className='text-lg font-medium'>₹{fare[vehicleType]}</h3>
                     </div>
                 </div>
             </div>
             <button className='w-full bg-green-600 text-white font-semibold mt-4 p-2 rounded-lg ' onClick={()=>{
                 setVehicleFound(true)
                 setConfirmRidePanel(false)
+                createRide(vehicleType)
             }}>Confirm</button>
         </div>
     </div>

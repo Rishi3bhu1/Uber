@@ -19,7 +19,8 @@ function UserProtectedWrapper({
       }
     }).then((response)=>{
       if(response.status===201){
-        setCaptain(response.data.captain)
+        console.log(response.data)
+        setUser(response.data)
         setIsLoading(false)
       }
     }).catch((err)=>{

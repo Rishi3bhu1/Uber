@@ -3,10 +3,13 @@ const app = express();
 const cors = require("cors");
 require('dotenv').config()
 const mongoose = require("mongoose");
+const {initializeSocket} = require('./socket.js');
 const dbURL = process.env.dbURL;
-const PORT = process.env.PORT;
-const userRouter = require("./routes/user.route.js");
-const captainRouter = require("./routes/captain.route.js");
+
+const userRouter = require("./routes/user.routes.js");
+const captainRouter = require("./routes/captain.routes.js");
+const mapsRouter = require("./routes/maps.routes.js");
+const ridesRouter = require("./routes/ride.routes.js");
 const cookieParser = require("cookie-parser")
 main()
 .then((res)=>{
@@ -27,7 +30,7 @@ app.use(cookieParser())
 
 app.use("/users",userRouter)
 app.use("/captain",captainRouter)
+app.use("/maps",mapsRouter)
+app.use("/rides",ridesRouter)
 
-app.listen(PORT,()=>{
-    console.log(`The server is listening at PORT ${PORT}`)
-})
+module.exports = app;

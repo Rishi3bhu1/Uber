@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link,useNavigate} from 'react-router'
 import { useState,useContext } from 'react'
-import { CaptainDataContext } from '../context/CaptainContext'
+import { CaptainDataContext } from '../context/CaptainContext.jsx'
 import axios from 'axios'
 function CaptainSignUp(){
   const [email, setEmail] = useState('')
@@ -33,13 +33,11 @@ function CaptainSignUp(){
     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/register`,CaptainData)
     if(response.status===201){
       const data = response.data;
-      console.log(data)
+      console.log(data.captain)
       setCaptain(data.captain);
       localStorage.setItem('token',data.token)
       navigate('/captain/home')    
     }
-    setEmail('');
-    setPassword('');
   }
   return (
     <div className='p-7 h-screen flex flex-col justify-between'>

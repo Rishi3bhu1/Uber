@@ -18,7 +18,7 @@ const captainSchema = new mongoose.Schema({
         required:true,
         unique:true,
         lowercase:true,
-        minLength: [,'Enter valid email']
+        minLength: [3,'Enter valid email']
     },
     password:{
         type:String,
@@ -56,7 +56,7 @@ const captainSchema = new mongoose.Schema({
         }
     },
     location:{
-        lat:{
+        ltd:{
             type:Number,
         },
         lng:{

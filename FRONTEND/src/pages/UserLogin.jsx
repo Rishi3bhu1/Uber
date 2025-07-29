@@ -2,11 +2,10 @@ import React from 'react'
 import axios from 'axios'
 import { Link,useNavigate} from 'react-router'
 import { useState,useContext} from 'react'
-import { UserDataContext } from '../context/UserContext'
+import { UserDataContext } from '../context/UserContext.jsx'
 function UserLogin() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
-    const [userData,setUserData] = useState({});
     const {user,setUser} = useContext(UserDataContext);
     const navigate = useNavigate();
     const handleSubmit = async(e) => {
@@ -22,8 +21,6 @@ function UserLogin() {
             localStorage.setItem('token',data.token)
             navigate('/user/home')
         }
-        setEmail('');
-        setPassword('');
     }
   return (
     <div className='p-7 h-screen flex flex-col justify-between'>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState,useContext } from 'react'
-import { CaptainDataContext } from '../context/CaptainContext'
+import { CaptainDataContext } from '../context/CaptainContext.jsx'
 import { Link,useNavigate } from 'react-router';
 import axios from 'axios';
 function CaptainLogin() {
